@@ -1,0 +1,61 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Simple Django Blog App </h3>
+                    <p class="text-light">Share your knowledge with the world. &nbsp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% if not authors %}
+            There are no authors to display. Create one using django admin.
+            {% endif %}
+
+            {% for author in authors %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ author.name }}</h2>
+                    <p class="card-text text-muted h6">{{ author.username }} | {{ author.email}} </p>
+                    <p class="card-text">{{author.bio|slice:":200" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% block sidebar %}
+        <div class="col-md-4 float-right ">
+            <div class="card my-4">
+                <div class="card-body">
+                    <a href="{% url 'blog:home' %}" class="btn btn-danger">Back to All Blogs</a>
+                </div>
+            </div>
+        </div>
+        {% endblock sidebar %}
+    </div>
+</div>
+{% if is_paginated %}
+<nav aria-label="Page navigation conatiner"></nav>
+<ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+    {% endif %}
+</ul>
+</nav>
+</div>
+{% endif %}
+{%endblock%}

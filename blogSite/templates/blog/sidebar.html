@@ -1,0 +1,17 @@
+{% block sidebar %}
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+    <div class="card my-4">
+        <h5 class="card-header">Authors</h5>
+        <div class="card-body">
+            <p class="card-text"> An author is the creator or originator of any written work such as a book or play, and
+                is also considered a writer. More broadly defined, an author is "the
+                person who originated or gave existence to anything" and whose authorship determines responsibility for
+                what was created.</p>
+            <a href="{% url 'author:authors' %}" class="btn btn-danger">All authors</a>
+        </div>
+    </div>
+</div>
+
+{% endblock sidebar %}
