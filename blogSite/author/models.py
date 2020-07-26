@@ -37,7 +37,7 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
 
@@ -45,9 +45,9 @@ class User(AbstractUser):
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
-    bio = models.CharField(max_length=200)
-    occupation = models.CharField(max_length=100)
+    bio = models.CharField(max_length=200, null=True, blank=True)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
     profile_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.name, self.user
+        return self.name

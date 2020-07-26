@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Blog
+                        {% if 'update' in request.get_full_path %}
+                        Update
+                        {% elif 'create' in request.get_full_path %}
+                        Create
+                        {% endif %} </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+
+            <form method="post" action="#">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-success">
+                    {% if 'update' in request.get_full_path %}
+                    Update
+                    {% elif 'create' in request.get_full_path %}
+                    Create
+                    {% endif %}
+                </button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+
+        </div>
+        {% block sidebar %}
+        <div class="col-md-4 float-right ">
+            <div class="card my-4">
+                <h5 class="card-header">Quick Links</h5>
+                <div class="card-body">
+                    <a href="{% url 'author:authors' %}" class="btn btn-danger">All Authors</a>
+                    <a href="{% url 'blog:home' %}" class="btn btn-primary">All Blogs</a>
+                </div>
+            </div>
+        </div>
+        {% endblock sidebar %}
+    </div>
+
+</div>
+{%endblock%}

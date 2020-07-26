@@ -40,3 +40,17 @@ body {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
 }
+
+.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+
+.profile-pic-blog{
+		max-width: 80px;
+		max-height:80px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}

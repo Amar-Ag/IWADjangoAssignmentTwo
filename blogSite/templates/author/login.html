@@ -16,36 +16,41 @@
         </div>
     </div>
 </header>
+
 <div class="container">
     <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
+        {% block sidebar %}
+        <div class="col-md-3 float-right ">
+            <div class="card my-4">
+                <div class="card-body">
+                    <a href="{% url 'blog:home' %}" class="btn btn-danger">All Blogs</a>
+                    <br><br>
+                    <a href="{% url 'author:signup' %}" class="btn btn-warning">Create Account</a>
+                </div>
+            </div>
+        </div>
+        {% endblock sidebar %}
+
+        <div class="col-md-7 mt-3 float-left">
 
             <form method="post" action="#">
                 {% csrf_token %}
                 <div class="login-form">
                     <div id="div_id_username" class="form-group">
                         <label for="username" class="requiredField">Email</label>
-                        <!--                    <div class="">-->
                         <input type="text" name="username" maxlength="150" autofocus
                                class="form-control" required id="username">
-                        <!--                    </div>-->
                         <label for="password" class="requiredField">Password</label>
-                        <!--                    <div class="">-->
                         <input type="password" name="password" class="form-control" required
                                id="password">
-                        <!--                    </div>-->
                     </div>
                     {% for message in messages %}
                     <p>{{message}}</p>
                     {% endfor %}
 
                     <button type="submit" class="btn btn-primary">Log In</button>
-                    <!--                    <button type="reset" class="btn btn-danger">Cac</button>-->
             </form>
-
         </div>
-        {% block sidebar %} {% endblock sidebar %}
     </div>
 
 </div>
