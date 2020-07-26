@@ -1,6 +1,5 @@
-from django.contrib.auth.decorators import login_required
 from django.urls import path
-from .views import LoginView, SignupView, LogOutView, AuthorList, ProfileView
+from .views import LoginView, SignupView, LogOutView, AuthorList, ProfileView, ActivateView
 
 app_name = 'author'
 
@@ -10,5 +9,5 @@ urlpatterns = [
     path('logout/', LogOutView.as_view(), name='logout'),
     path('all/', AuthorList.as_view(), name='authors'),
     path('profile/', ProfileView.as_view(), name='profile'),
-
+    path('activate/<uidb64>/<token>/', ActivateView.as_view(), name='activate'),
 ]
